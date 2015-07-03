@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local redshift = require("redshift")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -41,8 +42,17 @@ function script_path()
    return str:match("(.*/)")
 end
 
+-- {{{ Redshift
+redshift.redshift = "/usr/bin/redshift"
+-- set additional redshift arguments (optional)
+--redshift.options = "-c ~/.config/redshift.conf"
+-- 1 for dim, 0 for not dimmed
+redshift.init(1)
+-- }}}
+
 -- {{{ Variable definitions
 home            = os.getenv("HOME")
+bin             = home .. "/bin"
 confdir         = script_path()
 scripts         = confdir .. "/scripts/"
 themes          = confdir .. "/themes"
@@ -230,8 +240,27 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
--- {{{ Key bindings
+-- {{{ Keybindings
 globalkeys = awful.util.table.join(
+    -- xkbmap: Alt + Right Shift switches the current keyboard layout
+    awful.key({ altkey }, "Shift_R", function () xkbmap.switch() end),
+
+    -- redshift: Mod + s switches redshift
+    awful.key({ modkey            }, "s",      redshift.toggle          ),
+
+    -- print screen: using scrot
+    awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
+
+    -- screen lock: Mod+l
+    awful.key({ modkey            }, "l", function () awful.util.spawn(bin .. "/start-locker.sh") end),
+    awful.key({ modkey            }, "F3", function () awful.util.spawn(bin .. "/start-locker.sh") end),
+
+    -- debug: notification example
+    --awful.key({ modkey            }, "l",
+    --    function ()
+    --        naughty.notify({text='Modkey+key pressed!'});
+    --    end),
+
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
