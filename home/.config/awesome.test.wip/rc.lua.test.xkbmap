@@ -11,13 +11,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
-function script_path()
-   local str = debug.getinfo(2, "S").source:sub(2)
-   return str:match("(.*/)")
-end
-
-dofile(script_path() .. "/mods/xkbmap.lua")
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -43,15 +36,28 @@ do
 end
 -- }}}
 
+function script_path()
+   local str = debug.getinfo(2, "S").source:sub(2)
+   return str:match("(.*/)")
+end
+
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
+home            = os.getenv("HOME")
+confdir         = script_path()
+scripts         = confdir .. "/scripts/"
+themes          = confdir .. "/themes"
+language        = string.gsub(os.getenv("LANG"), ".utf8", "")
+
+active_theme    = themes .. "/default"
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
--- This is used later as the default terminal and editor to run.
--- terminal = "xterm"
-terminal = os.getenv("TERMINAL") or "urxvt"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+terminal        = os.getenv("TERMINAL") or "urxvt"
+editor          = os.getenv("EDITOR") or "vim"
+editor_cmd      = terminal .. " -e " .. editor
+browser         = "dwb"
+mail            = terminal .. " -e mutt "
+wifi            = terminal .. " nmtui "
+music_player    = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -59,6 +65,10 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+altkey = "Mod1"
+
+dofile(confdir .. "mods/xkbmap.lua")
+dofile(confdir .. "mods/menu.lua")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
