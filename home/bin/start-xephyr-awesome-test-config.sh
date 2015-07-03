@@ -4,4 +4,4 @@
 #awmtt start #-C ~/.config/awesome.test/rc.lua
 #awmtt start -C ~/.config/awesome.test/rc.lua
 awmtt start -C \
-~/.homesick/repos/dotfiles-awesome/home/.config/awesome.test/rc.lua
+~/.homesick/repos/dotfiles-awesome/home/.config/awesome/rc.lua.test

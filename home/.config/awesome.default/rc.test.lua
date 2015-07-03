@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local redshift = require("redshift")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -40,6 +41,14 @@ function script_path()
    local str = debug.getinfo(2, "S").source:sub(2)
    return str:match("(.*/)")
 end
+
+-- {{{ Redshift
+redshift.redshift = "/usr/bin/redshift"
+-- set additional redshift arguments (optional)
+--redshift.options = "-c ~/.config/redshift.conf"
+-- 1 for dim, 0 for not dimmed
+redshift.init(1)
+-- }}}
 
 -- {{{ Variable definitions
 home            = os.getenv("HOME")
@@ -232,7 +241,14 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
+
 globalkeys = awful.util.table.join(
+    -- Alt + Right Shift switches the current keyboard layout
+    awful.key({ "Alt_R" }, "Shift_R", function () xkbmap.switch() end),
+    --awful.key({ "Mod1" }, "Shift_R", function () xkbmap.switch() end)
+
+    -- Mod + s switches redshift
+    awful.key({ modkey            }, "s",      redshift.toggle          ),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),

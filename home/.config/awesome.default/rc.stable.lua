@@ -36,15 +36,28 @@ do
 end
 -- }}}
 
+function script_path()
+   local str = debug.getinfo(2, "S").source:sub(2)
+   return str:match("(.*/)")
+end
+
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
+home            = os.getenv("HOME")
+confdir         = script_path()
+scripts         = confdir .. "/scripts/"
+themes          = confdir .. "/themes"
+language        = string.gsub(os.getenv("LANG"), ".utf8", "")
+
+active_theme    = themes .. "/default"
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
--- This is used later as the default terminal and editor to run.
--- terminal = "xterm"
-terminal = os.getenv("TERMINAL") or "urxvt"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+terminal        = os.getenv("TERMINAL") or "urxvt"
+editor          = os.getenv("EDITOR") or "vim"
+editor_cmd      = terminal .. " -e " .. editor
+browser         = "dwb"
+mail            = terminal .. " -e mutt "
+wifi            = terminal .. " nmtui "
+music_player    = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -52,6 +65,9 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+altkey = "Mod1"
+
+dofile(confdir .. "mods/xkbmap.lua")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -110,45 +126,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Wibox
-
---{{--| En/Ru | --------
-kbd_dbus_sw_cmd = "qdbus ru.gentoo.KbddService /ru/gentoo/KbddService  ru.gentoo.kbdd.set_layout "
-kbd_dbus_prev_cmd = "qdbus ru.gentoo.KbddService /ru/gentoo/KbddService ru.gentoo.kbdd.prev_layout"
-kbd_dbus_next_cmd = "qdbus ru.gentoo.KbddService /ru/gentoo/KbddService ru.gentoo.kbdd.next_layout"
-
-kbd_img_path = "/usr/share/icons/kbflags/"
-
--- {{{ Keyboard layout widgets
---- Create the menu
-kbdmenu =awful.menu({ items = {  { "English", kbd_dbus_sw_cmd .. "0",  kbd_img_path .. "us.png" },
-    { "Русский", kbd_dbus_sw_cmd .. "1", kbd_img_path .. "ru.png" },
-    { "Hebrew", kbd_dbus_sw_cmd .. "2", kbd_img_path .. "il.png" },
-    { "Deutsch", kbd_dbus_sw_cmd .. "3", kbd_img_path .. "de.png" }
-    }
-})
-
-kbdwidget = wibox.widget.textbox(" En ")
-kbdwidget.border_width = 1
-kbdwidget.border_color = beautiful.fg_normal
-kbdwidget:set_text(" En ")
-kbdwidget:buttons(awful.util.table.join(
-    awful.button({ }, 1, function() os.execute(kbd_dbus_prev_cmd) end),
-    awful.button({ }, 2, function() os.execute(kbd_dbus_next_cmd) end),
-    awful.button({ }, 3, function() kbdmenu:toggle () end)
-))
-
-kbdstrings = {[0] = " En ",
-              [1] = " Ru "}
-
-dbus.request_name("session", "ru.gentoo.kbdd")
-dbus.add_match("session", "interface='ru.gentoo.kbdd', member='layoutChanged'")
-dbus.connect_signal("ru.gentoo.kbdd", function(...)
-    local data = {...}
-    local layout = data[2]
-    kbdwidget:set_markup(kbdstrings[layout])
-    end
-)
-
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
@@ -231,7 +208,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(kbdwidget)
+    right_layout:add(xkbmap.widget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
