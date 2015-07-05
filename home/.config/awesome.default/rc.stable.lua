@@ -1,59 +1,37 @@
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+gears = require("gears")
+awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
-local wibox = require("wibox")
+wibox = require("wibox")
 -- Theme handling library
-local beautiful = require("beautiful")
+beautiful = require("beautiful")
 -- Notification library
-local naughty = require("naughty")
-local menubar = require("menubar")
-local redshift = require("redshift")
+naughty = require("naughty")
+menubar = require("menubar")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
-end
+--awful.key({ modkey            }, "l",
+    --    function ()
+    --        naughty.notify({text='Modkey+key pressed!'});
+    --    end),
 
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then return end
-        in_error = true
+--function naugthy_debug(I
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = err })
-        in_error = false
-    end)
-end
--- }}}
-
-function script_path()
+-- Path of the rc.lua
+function rc_path()
    local str = debug.getinfo(2, "S").source:sub(2)
    return str:match("(.*/)")
 end
 
--- {{{ Redshift
-redshift.redshift = "/usr/bin/redshift"
--- set additional redshift arguments (optional)
---redshift.options = "-c ~/.config/redshift.conf"
--- 1 for dim, 0 for not dimmed
-redshift.init(1)
--- }}}
+package.path = package.path .. ";" .. rc_path() .. "rc/?.lua"
+
+require("rc_errors")
 
 -- {{{ Variable definitions
 home            = os.getenv("HOME")
 bin             = home .. "/bin"
-confdir         = script_path()
+confdir         = rc_path()
 scripts         = confdir .. "/scripts/"
 themes          = confdir .. "/themes"
 language        = string.gsub(os.getenv("LANG"), ".utf8", "")
@@ -77,7 +55,9 @@ music_player    = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 modkey = "Mod4"
 altkey = "Mod1"
 
-dofile(confdir .. "mods/xkbmap.lua")
+require("rc_xkbmap")
+require("rc_redshift")
+require("rc_menu")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
