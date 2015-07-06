@@ -58,6 +58,7 @@ altkey = "Mod1"
 require("rc_xkbmap")
 require("rc_redshift")
 require("rc_menu")
+require("rc_keydoc")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -241,9 +242,15 @@ globalkeys = awful.util.table.join(
     --        naughty.notify({text='Modkey+key pressed!'});
     --    end),
 
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+   keydoc.group("Global Keys"),
+    awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
+        "Previous Tag"),
+    awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
+        "Next tag"),
+    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+        "Clear Choice"),
+    awful.key({ modkey,           }, "F1",     keydoc.display,
+        "Display Keymap Menu"),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -258,8 +265,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+    keydoc.group("Layout manipulation"),
+    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
+         "Swap with next window"),
+    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
+         "Swap with previous window"),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
