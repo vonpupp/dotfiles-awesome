@@ -59,6 +59,7 @@ require("rc_xkbmap")
 require("rc_redshift")
 require("rc_menu")
 require("rc_keydoc")
+require("rc_videout")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -94,23 +95,6 @@ for s = 1, screen.count() do
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
 end
 -- }}}
-
--- {{{ Menu
--- Create a laucher widget and a main menu
-myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -232,9 +216,14 @@ globalkeys = awful.util.table.join(
     -- print screen: using scrot
     awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
 
-    -- screen lock: Mod+l
+    -- screen lock: Mod + l or Mod + F3
     awful.key({ modkey            }, "l", function () awful.util.spawn(bin .. "/start-locker.sh") end),
     awful.key({ modkey            }, "F3", function () awful.util.spawn(bin .. "/start-locker.sh") end),
+
+    -- screen saver lock: Mod + Control + l
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
+
+    awful.key({},                    "XF86Display", xrandr),
 
     -- debug: notification example
     --awful.key({ modkey            }, "l",
