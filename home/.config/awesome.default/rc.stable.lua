@@ -11,11 +11,6 @@ beautiful = require("beautiful")
 naughty = require("naughty")
 menubar = require("menubar")
 
---awful.key({ modkey            }, "l",
-    --    function ()
-    --        naughty.notify({text='Modkey+key pressed!'});
-    --    end),
-
 --function naugthy_debug(I
 
 -- Path of the rc.lua
@@ -65,6 +60,7 @@ require("rc_redshift")
 require("rc_menu")
 require("rc_keydoc")
 require("rc_videout")
+require("rc_autostart")
 
 -- default rc's
 require("rc_layouts")
