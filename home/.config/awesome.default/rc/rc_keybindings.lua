@@ -1,3 +1,8 @@
+--awful.key({ modkey            }, "l",
+--        function ()
+--            naughty.notify({text='Modkey+key pressed!'});
+--        end),
+
 -- {{{ Keybindings
 globalkeys = awful.util.table.join(
     -- xkbmap: Alt + Right Shift switches the current keyboard layout
