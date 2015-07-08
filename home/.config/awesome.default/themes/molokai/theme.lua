@@ -4,7 +4,7 @@
 
 theme = {}
 
-theme.font          = "Ubuntu 8"
+theme.font          = "sans 8"
 
 theme.bg_normal     = "#1B1D1E"
 theme.bg_focus      = "#1B1D1E"
