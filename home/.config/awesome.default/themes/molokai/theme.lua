@@ -1,21 +1,21 @@
 ---------------------------
--- Default awesome theme --
+-- Molokai awesome theme --
 ---------------------------
 
 theme = {}
 
-theme.font          = "sans 8"
+theme.font          = "Ubuntu 8"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#1B1D1E"
+theme.bg_focus      = "#1B1D1E"
+theme.bg_urgent     = "#1B1D1E"
+theme.bg_minimize   = "#1B1D1E"
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = "#75715E"
+theme.fg_focus      = "#A6E22E"
+theme.fg_urgent     = "#F92672"
+theme.fg_minimize   = "#75715E"
 
 theme.border_width  = 1
 theme.border_normal = "#000000"
@@ -73,7 +73,7 @@ theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/def
 theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = "/usr/share/awesome/themes/default/background.png"
+--theme.wallpaper = "~/.config/awesome/background.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"

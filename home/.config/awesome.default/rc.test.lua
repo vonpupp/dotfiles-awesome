@@ -27,12 +27,12 @@ require("rc_errors")
 home            = os.getenv("HOME")
 bin             = home .. "/bin"
 confdir         = rc_path()
-scripts         = confdir .. "/scripts/"
-themes          = confdir .. "/themes"
+scripts         = confdir .. "scripts"
+themes          = confdir .. "themes"
 language        = string.gsub(os.getenv("LANG"), ".utf8", "")
 
-active_theme    = themes .. "/default"
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+active_theme    = themes .. "/molokai"
+beautiful.init(active_theme .. "/theme.lua")
 
 terminal        = os.getenv("TERMINAL") or "urxvt"
 editor          = os.getenv("EDITOR") or "vim"
