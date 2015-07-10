@@ -36,11 +36,18 @@ beautiful.init(active_theme .. "/theme.lua")
 
 terminal        = os.getenv("TERMINAL") or "urxvt"
 editor          = os.getenv("EDITOR") or "vim"
+xeditor         = os.getenv("XEDITOR") or "gvim"
+pw_mgr          = os.getenv("PW_MGR") or "keepassx"
 editor_cmd      = terminal .. " -e " .. editor
-browser         = "dwb"
-mail            = terminal .. " -e mutt "
-wifi            = terminal .. " nmtui "
-music_player    = terminal .. " -g 130x34-320+16 -e ncmpcpp "
+--browser         = "dwb"
+browser         = "firefox"
+mail_cmd        = terminal .. " -e mutt "
+wifi_cmd        = terminal .. " -e nmtui "
+music_cmd       = terminal .. " -g 130x34-320+16 -e ncmpcpp "
+--music_cmd       = terminal .. " -e ncmpcpp"
+chat_cmd        = terminal .. " -e weechat-curses"
+mixer_cmd       = terminal .. " -e alsamixer"
+processes_cmd   = terminal .. " -e htop"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
