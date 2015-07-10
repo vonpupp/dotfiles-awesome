@@ -67,6 +67,25 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+--client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+--client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+client.connect_signal(
+   "focus",
+   function(c)
+      if c.class:lower():find("rxvt") or c.class:lower():find("emacs") then
+         c.border_color = beautiful.border_focus
+         c.opacity = 0.9
+      end
+   end)
+
+client.connect_signal(
+   "unfocus",
+   function(c)
+      if c.class:lower():find("rxvt") or c.class:lower():find("emacs") then
+         c.border_color = beautiful.border_normal
+         c.opacity = 0.7
+      end
+   end)
+
 -- }}}
