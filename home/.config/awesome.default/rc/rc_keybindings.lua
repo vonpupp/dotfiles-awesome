@@ -30,8 +30,10 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Shift" }, "s", redshift.toggle,
         "Redshift toggle"),
-    awful.key({ altkey }, "Shift_R", function () xkbmap.switch() end,
+    awful.key({ altkey }, "Shift_R", function () xkbmap.forward_switch() end,
         "Keyboard layout toggle"),
+    --awful.key({ altkey }, "Shift_L", function () xkbmap.backward_switch() end,
+    --    "Keyboard layout toggle"),
 
     -- Screen locking
     awful.key({ modkey, "Shift" }, "l", function () awful.util.spawn(bin .. "/start-locker.sh") end,
