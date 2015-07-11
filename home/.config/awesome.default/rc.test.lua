@@ -11,8 +11,6 @@ beautiful = require("beautiful")
 naughty = require("naughty")
 menubar = require("menubar")
 
---function naugthy_debug(I
-
 -- Path of the rc.lua
 function rc_path()
    local str = debug.getinfo(2, "S").source:sub(2)
@@ -41,6 +39,7 @@ pw_mgr          = os.getenv("PW_MGR") or "keepassx"
 editor_cmd      = terminal .. " -e " .. editor
 --browser         = "dwb"
 browser         = "firefox"
+file_manager    = "spacefm"
 mail_cmd        = terminal .. " -e mutt "
 wifi_cmd        = terminal .. " -e nmtui "
 music_cmd       = terminal .. " -g 130x34-320+16 -e ncmpcpp "
@@ -48,6 +47,7 @@ music_cmd       = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 chat_cmd        = terminal .. " -e weechat-curses"
 mixer_cmd       = terminal .. " -e alsamixer"
 processes_cmd   = terminal .. " -e htop"
+bg_change_cmd   = "feh --bg-scale -z ~/pictures/wallpaper"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
