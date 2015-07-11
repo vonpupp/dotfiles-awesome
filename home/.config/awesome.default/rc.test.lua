@@ -22,14 +22,14 @@ package.path = package.path .. ";" .. rc_path() .. "rc/?.lua"
 require("rc_errors")
 
 -- {{{ Variable definitions
-home            = os.getenv("HOME")
-bin             = home .. "/bin"
-confdir         = rc_path()
-scripts         = confdir .. "scripts"
-themes          = confdir .. "themes"
+home_dir        = os.getenv("HOME")
+bin_dir         = home_dir .. "/bin"
+conf_dir        = rc_path()
+scripts_dir     = conf_dir .. "scripts"
+themes_dir      = conf_dir .. "themes"
 language        = string.gsub(os.getenv("LANG"), ".utf8", "")
 
-active_theme    = themes .. "/molokai"
+active_theme    = themes_dir .. "/molokai"
 beautiful.init(active_theme .. "/theme.lua")
 
 terminal        = os.getenv("TERMINAL") or "urxvt"
@@ -68,6 +68,7 @@ require("rc_menu")
 require("rc_keydoc")
 require("rc_videout")
 require("rc_autostart")
+require("rc_conky")
 
 -- default rc's
 require("rc_layouts")
