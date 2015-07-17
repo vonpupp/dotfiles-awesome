@@ -40,17 +40,45 @@ globalkeys = awful.util.table.join(
     --    "Keyboard layout toggle"),
 
     -- Screen locking
-    awful.key({ modkey, "Shift" }, "l", function () awful.util.spawn(bin .. "/start-locker.sh") end,
+    awful.key({ modkey, "Shift" }, "l", function () awful.util.spawn(scripts_dir .. "/start-locker.sh") end,
         "Lock session with i3loock"),
-    awful.key({ modkey, "Shift" }, "F3", function () awful.util.spawn(bin .. "/start-locker.sh") end),
+    awful.key({ modkey, "Shift" }, "F3", function () awful.util.spawn(scripts_dir .. "/start-locker.sh") end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock") end,
         "Lock session with screensaver"),
 
+    -- conky
+    awful.key({ altkey, "Control" }, "c", function() raise_conky() end, function() lower_conky() end),
+--awful.key({ altkey, "Control" }, "c",
+--        function ()
+--            local c = get_conky()
+--            if c == nil then
+--                naughty.notify({text='get_conky failed!'});
+--            else
+--                naughty.notify({text='get_conky worked!'});
+--            end
+--        end),
+    awful.key({ altkey, "Control" }, "t", function() toggle_conky() end),
+
     -- print screen: using scrot
-    awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
+    awful.key({}, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/pictures/screenshots/ 2>/dev/null'") end),
 
     -- xrandr
-    awful.key({},                    "XF86Display", xrandr, "Xrandr output cycle"),
+    awful.key({}, "XF86Display", xrandr, "Xrandr output cycle"),
+
+    -- Switch to specific layout
+    awful.key({ modkey, "Control" }, "f", function () awful.layout.set(awful.layout.suit.floating) end),
+    awful.key({ modkey, "Control" }, "t", function () awful.layout.set(awful.layout.suit.tile) end),
+    awful.key({ modkey, "Control" }, "b", function () awful.layout.set(awful.layout.suit.tile.bottom) end),
+    awful.key({ modkey, "Control" }, "s", function () awful.layout.set(awful.layout.suit.fair) end),
+    awful.key({ modkey, "Control" }, "m", function () awful.layout.set(awful.layout.suit.max) end),
+
+    -- {{ Audio volume
+    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 500+") end),
+    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 500-") end),
+    awful.key({ }, "XF86AudioMute",        function () awful.util.spawn("amixer set Master toggle") end),
+    awful.key({ }, "XF86AudioMicMute",     function () awful.util.spawn("amixer set Capture toggle") end),
+    -- TODO: XF86Launch1
+    -- }}
 
     -- {{ MPD control
     awful.key({ modkey }, "F11", function () awful.util.spawn_with_shell("mpc toggle") end, "music play/pause"),
