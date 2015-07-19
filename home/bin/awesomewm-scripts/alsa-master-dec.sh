@@ -1,1 +1,1 @@
-amixer set Master 1%+
+amixer set Master 1%-
