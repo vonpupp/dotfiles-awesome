@@ -1,3 +1,5 @@
+-- Source:
+-- https://awesome.naquadah.org/wiki/Volume_control_and_display
 -- This is a tweak based off of the volume widget box.  I didn't like the idea of having a box, so it has been changed to display numbers.  I like it simple
 
 local wibox = require("wibox")

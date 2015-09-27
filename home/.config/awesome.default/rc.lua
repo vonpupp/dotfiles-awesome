@@ -1,1 +1,1 @@
-/home/av/.config/awesome/rc.stable.lua
+rc.stable.lua
