@@ -24,15 +24,15 @@ package.path = package.path .. ";" .. rc_path() .. "rc/?.lua"
 require("rc_errors")
 
 -- {{{ Variable definitions
-home            = os.getenv("HOME")
-bin             = home .. "/bin"
-confdir         = rc_path()
-scripts         = confdir .. "scripts"
-themes          = confdir .. "themes"
+home_dir        = os.getenv("HOME") .. "/"
+bin_dir         = home_dir .. "bin/"
+conf_dir        = rc_path()
+scripts_dir     = bin_dir .. "awesomewm-scripts/"
+themes_dir      = conf_dir .. "themes/"
 language        = string.gsub(os.getenv("LANG"), ".utf8", "")
 
-active_theme    = themes .. "/molokai"
-beautiful.init(active_theme .. "/theme.lua")
+active_theme    = themes_dir .. "molokai/"
+beautiful.init(active_theme .. "theme.lua")
 
 terminal        = os.getenv("TERMINAL") or "urxvt"
 editor          = os.getenv("EDITOR") or "vim"
@@ -41,6 +41,7 @@ pw_mgr          = os.getenv("PW_MGR") or "keepassx"
 editor_cmd      = terminal .. " -e " .. editor
 --browser         = "dwb"
 browser         = "firefox"
+file_manager    = "spacefm"
 mail_cmd        = terminal .. " -e mutt "
 wifi_cmd        = terminal .. " -e nmtui "
 music_cmd       = terminal .. " -g 130x34-320+16 -e ncmpcpp "
@@ -48,6 +49,7 @@ music_cmd       = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 chat_cmd        = terminal .. " -e weechat-curses"
 mixer_cmd       = terminal .. " -e alsamixer"
 processes_cmd   = terminal .. " -e htop"
+bg_change_cmd   = "feh --bg-scale -z ~/Pictures/wallpapers"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -68,6 +70,8 @@ require("rc_menu")
 require("rc_keydoc")
 require("rc_videout")
 require("rc_autostart")
+--require("rc_conky")
+require("rc_textvolume")
 
 -- default rc's
 require("rc_layouts")
