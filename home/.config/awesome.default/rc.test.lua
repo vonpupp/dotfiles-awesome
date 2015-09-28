@@ -47,7 +47,7 @@ music_cmd       = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 chat_cmd        = terminal .. " -e weechat-curses"
 mixer_cmd       = terminal .. " -e alsamixer"
 processes_cmd   = terminal .. " -e htop"
-bg_change_cmd   = "feh --bg-scale -z ~/pictures/wallpaper"
+bg_change_cmd   = "feh --bg-scale -z ~/Pictures/wallpapers"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -68,7 +68,7 @@ require("rc_menu")
 require("rc_keydoc")
 require("rc_videout")
 require("rc_autostart")
-require("rc_conky")
+--require("rc_conky")
 require("rc_textvolume")
 
 -- default rc's
