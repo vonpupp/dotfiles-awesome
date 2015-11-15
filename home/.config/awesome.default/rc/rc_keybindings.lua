@@ -12,7 +12,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn(xeditor_cmd) end,
         "GVIM shortcut"),
     awful.key({ modkey, "Shift" }, "p", function () awful.util.spawn(pw_mgr) end,
-        "GVIM shortcut"),
+        "KeepPass shortcut"),
     awful.key({ modkey, "Shift" }, "w", function () awful.util.spawn_with_shell(wifi_cmd) end,
         "Wifi manager (nm) shortcut"),
     awful.key({ modkey, "Shift" }, "b", function () awful.util.spawn(browser) end,
@@ -42,6 +42,8 @@ globalkeys = awful.util.table.join(
     -- Screen locking
     awful.key({ modkey, "Shift" }, "l", function () awful.util.spawn(scripts_dir .. "start-locker.sh") end,
         "Lock session with i3loock"),
+    awful.key({ modkey, "Shift" }, "u", function () awful.util.spawn(scripts_dir .. "create-xdg_menu.sh") end,
+        "Update xdg menu"),
     awful.key({ modkey, "Shift" }, "F3", function () awful.util.spawn(scripts_dir .. "start-locker.sh") end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn(scripts_dir .. "start-locker-screensaver.sh") end,
         "Lock session with screensaver"),
