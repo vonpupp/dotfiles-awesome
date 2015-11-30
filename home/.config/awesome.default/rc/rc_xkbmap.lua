@@ -21,6 +21,13 @@ xkbmap.switch = function ()
     os.execute( xkbmap.cmd .. " " .. t[2] .. " " .. t[3] )
 end
 
+xkbmap.original_switch = function ()
+    xkbmap.current = xkbmap.current % #(xkbmap.layout) +1
+    local t = xkbmap.layout[xkbmap.current]
+    xkbmap.widget:set_text(" " .. t[1] .. " ")
+    os.execute( xkbmap.cmd .. " " .. t[2] .. " " .. t[3] )
+end
+
 xkbmap.forward_switch = function ()
     xkbmap.current = xkbmap.current % #(xkbmap.layout) + 1
     xkbmap.switch()
