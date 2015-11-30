@@ -1,3 +1,6 @@
 [submodule "home/.config/awesome.default/redshift"]
 	path = home/.config/awesome.default/redshift
 	url = git://github.com/YoRyan/awesome-redshift.git
+[submodule "home/.config/awesome.default/foggy"]
+	path = home/.config/awesome.default/foggy
+	url = https://github.com/k3rni/foggy
