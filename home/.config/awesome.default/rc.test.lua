@@ -10,6 +10,9 @@ beautiful = require("beautiful")
 -- Notification library
 naughty = require("naughty")
 menubar = require("menubar")
+foggy = require('foggy')
+--- TODO
+--   - Add lain
 
 -- Path of the rc.lua
 function rc_path()

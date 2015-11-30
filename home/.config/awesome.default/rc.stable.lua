@@ -10,6 +10,7 @@ beautiful = require("beautiful")
 -- Notification library
 naughty = require("naughty")
 menubar = require("menubar")
+foggy = require('foggy')
 
 --function naugthy_debug(I
 
