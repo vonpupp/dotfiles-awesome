@@ -1,2 +1,5 @@
 # ENVARS
 home/.envars/
+
+# ARCHMENU
+home/.config/awesome.default/rc/archmenu.lua
