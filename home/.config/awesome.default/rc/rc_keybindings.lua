@@ -67,6 +67,9 @@ globalkeys = awful.util.table.join(
     -- xrandr
     awful.key({}, "XF86Display", xrandr, "Xrandr output cycle"),
 
+    awful.key({ altkey, "Shift" }, "v", foggy.menu,
+        "Xrandr foggy cycle"),
+
     -- Switch to specific layout
     awful.key({ modkey, "Control" }, "f", function () awful.layout.set(awful.layout.suit.floating) end),
     awful.key({ modkey, "Control" }, "t", function () awful.layout.set(awful.layout.suit.tile) end),
