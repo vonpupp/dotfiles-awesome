@@ -32,7 +32,7 @@ scripts_dir     = bin_dir .. "awesomewm-scripts/"
 themes_dir      = conf_dir .. "themes/"
 language        = string.gsub(os.getenv("LANG"), ".utf8", "")
 
-active_theme    = themes_dir .. "molokai/"
+active_theme    = themes_dir .. "greenish/"
 beautiful.init(active_theme .. "theme.lua")
 
 terminal        = os.getenv("TERMINAL") or "urxvt"
