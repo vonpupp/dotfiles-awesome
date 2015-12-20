@@ -6,3 +6,6 @@ home/.config/awesome.default/rc/archmenu.lua
 
 # FOGGY
 home/.config/awesome.default/foggy
+
+# OBVIOUS
+home/.config/awesome.default/obvious

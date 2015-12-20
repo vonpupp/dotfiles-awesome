@@ -11,6 +11,7 @@ beautiful = require("beautiful")
 naughty = require("naughty")
 menubar = require("menubar")
 foggy = require('foggy')
+obvious = require('obvious')
 
 --function naugthy_debug(I
 
@@ -84,3 +85,6 @@ require("rc_keybindings")
 require("rc_rules")
 require("rc_signals")
 
+-- libs
+require("obvious.battery")
+require("obvious.net")

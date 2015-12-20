@@ -4,3 +4,6 @@
 [submodule "home/.config/awesome.default/foggy"]
 	path = home/.config/awesome.default/foggy
 	url = https://github.com/k3rni/foggy
+[submodule "home/.config/awesome.default/obvious"]
+	path = home/.config/awesome.default/obvious
+	url = https://vonpupp@github.com/hoelzro/obvious.git
