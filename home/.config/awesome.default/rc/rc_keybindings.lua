@@ -144,6 +144,16 @@ globalkeys = awful.util.table.join(
         end,
         "Cycle windows or windows style"),
 
+    --awful.key({ modkey, "Control", "Shift"}, "t",    awful.client.settrans(arg="+0.1")),
+    --awful.key({ modkey}, "t"                         awful.client.settrans(arg="-0.1")),
+	awful.key({ modkey }, "z",
+    function ()
+        if  client.focus == awful.client.master() then
+            awful.client.focus.history.previous()
+        end
+        client.focus:swap(awful.client.master())
+    end, ""),
+
     -- Standard program
     keydoc.group("Standard Programs"),
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end,
@@ -264,6 +274,7 @@ end
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
+    awful.button({ modkey }, 2, awful.mouse.client.zoom),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 -- Set keys

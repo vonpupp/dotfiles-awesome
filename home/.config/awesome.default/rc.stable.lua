@@ -11,7 +11,7 @@ beautiful = require("beautiful")
 naughty = require("naughty")
 menubar = require("menubar")
 foggy = require('foggy')
-obvious = require('obvious')
+-- obvious = require('obvious')
 
 --function naugthy_debug(I
 
@@ -73,7 +73,9 @@ require("rc_keydoc")
 require("rc_videout")
 require("rc_autostart")
 --require("rc_conky")
-require("rc_textvolume")
+require("rc_volumetext")
+--require("rc_acpitext")
+-- require("obvious.battery")
 
 -- default rc's
 require("rc_layouts")
@@ -86,5 +88,5 @@ require("rc_rules")
 require("rc_signals")
 
 -- libs
-require("obvious.battery")
-require("obvious.net")
+--require("obvious.battery")
+--require("obvious.net")
